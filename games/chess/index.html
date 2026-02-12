@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Chess</h1>
+
+<div class="hud">
+  <span id="turn">Turn: White</span>
+  <span id="score">Captured: White 0 - Black 0</span>
+  <span id="highscore">High Score: 0</span>
+</div>
+
+<div class="game-wrapper">
+  <div id="board" class="board"></div>
+
+  <div id="overlay" class="hidden">
+    <h2 id="overlayTitle">Game Over</h2>
+    <button id="resumeBtn">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="backBtn">Main Menu</button>
+  </div>
+</div>
+
+<p class="hint">Click a piece, then a target square. Esc = Menu</p>
+
+<script src="../../js/storage.js"></script>
+<script src="../../js/stats.js"></script>
+<script src="chess.js"></script>
+
+</body>
+</html>

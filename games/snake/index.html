@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Snake</h1>
+
+<div class="hud">
+  <span id="score">Score: 0</span>
+  <span id="highscore">High Score: 0</span>
+</div>
+
+<!-- GAME WRAPPER -->
+<div class="game-wrapper">
+
+  <canvas id="game" width="420" height="420"></canvas>
+
+  <!-- OVERLAY -->
+  <div id="overlay" class="hidden">
+    <h2 id="overlayTitle">Game Over</h2>
+    <button id="resumeBtn">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="backBtn">Main Menu</button>
+  </div>
+
+</div>
+
+<p class="hint">Arrow keys move, Space = Pause, Esc = Menu</p>
+
+<script src="../../js/storage.js"></script>
+<script src="../../js/stats.js"></script>
+<script src="snake.js"></script>
+
+</body>
+</html>
+
+
+

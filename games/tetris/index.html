@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Tetris</h1>
+
+<div class="hud">
+  <span id="score">Score: 0</span>
+  <span id="highscore">High Score: 0</span>
+</div>
+
+<div class="game-wrapper">
+  <canvas id="game" width="240" height="480"></canvas>
+
+  <div id="overlay" class="hidden">
+    <h2 id="overlayTitle">Game Over</h2>
+    <button id="resumeBtn">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="backBtn">Main Menu</button>
+  </div>
+</div>
+
+<p class="hint">Arrow keys move/rotate, P = Pause, Esc = Menu</p>
+
+<script src="../../js/storage.js"></script>
+<script src="../../js/stats.js"></script>
+<script src="tetris.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,71 @@
+body {
+    background:
+        radial-gradient(900px 500px at 15% -5%, rgba(61, 214, 165, 0.2), transparent 60%),
+        radial-gradient(900px 500px at 85% 5%, rgba(246, 201, 69, 0.18), transparent 55%),
+        linear-gradient(135deg, #0b0f1a, #0f1a12);
+    color: #f5f7ff;
+    text-align: center;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* WICHTIG */
+.game-wrapper {
+    position: relative;
+    width: 420px;
+    margin: 0 auto;
+}
+
+canvas {
+    background: #0f1420;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    border: 1px solid #1f2a3d;
+    display: block;
+}
+
+.hud {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* OVERLAY NUR ÜBER DEM SPIEL */
+#overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 12, 18, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    margin: 8px;
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: none;
+    background: #3dd6a5;
+    color: #081015;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none !important;
+}
+
+button:focus,
+button:active {
+    outline: none !important;
+}
+
+.hint {
+    opacity: 0.65;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}

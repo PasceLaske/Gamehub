@@ -1,0 +1,73 @@
+:root {
+    --bg-1: #111218;
+    --bg-2: #151b2c;
+    --bg-3: #1a232f;
+    --card: #161a26;
+    --accent: #e07a2f;
+    --accent-2: #2cc7a4;
+    --text: #f4f0e6;
+    --muted: #b6b2a7;
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background:
+        radial-gradient(900px 500px at 15% -10%, rgba(224, 122, 47, 0.2), transparent 60%),
+        radial-gradient(700px 500px at 85% 10%, rgba(44, 199, 164, 0.18), transparent 55%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, var(--bg-3));
+    color: var(--text);
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 36px 16px 56px;
+}
+
+h1 {
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    letter-spacing: 2px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin: 18px 0 18px;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 6px 12px 6px;
+}
+
+.games a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    padding: 18px 16px;
+    background:
+        linear-gradient(145deg, rgba(224, 122, 47, 0.18), transparent 55%),
+        linear-gradient(180deg, #161a26, #101420);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid #262b3d;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+}
+
+.games a:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Tic Tac Toe</h1>
+
+<div class="hud">
+  <span id="turn">Turn: X</span>
+  <span id="score">Score: X 0 - O 0</span>
+  <span id="highscore">High Score: 0</span>
+</div>
+
+<div class="game-wrapper">
+  <div id="board" class="board">
+    <button class="cell" data-cell="0"></button>
+    <button class="cell" data-cell="1"></button>
+    <button class="cell" data-cell="2"></button>
+    <button class="cell" data-cell="3"></button>
+    <button class="cell" data-cell="4"></button>
+    <button class="cell" data-cell="5"></button>
+    <button class="cell" data-cell="6"></button>
+    <button class="cell" data-cell="7"></button>
+    <button class="cell" data-cell="8"></button>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <h2 id="overlayTitle">Game Over</h2>
+    <button id="resumeBtn">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="backBtn">Main Menu</button>
+  </div>
+</div>
+
+<p class="hint">Click a square to place a mark. Esc = Menu</p>
+
+<script src="../../js/storage.js"></script>
+<script src="../../js/stats.js"></script>
+<script src="tictactoe.js"></script>
+
+</body>
+</html>
