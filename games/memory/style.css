@@ -1,0 +1,102 @@
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background:
+    radial-gradient(900px 500px at 15% -5%, rgba(85, 213, 168, 0.2), transparent 60%),
+    radial-gradient(900px 500px at 85% 5%, rgba(247, 166, 84, 0.18), transparent 55%),
+    linear-gradient(135deg, #0b1219, #13202a);
+  color: #f3f7ff;
+  text-align: center;
+  margin: 0;
+  padding: 24px 12px 32px;
+}
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 10px 0 16px;
+  font-weight: bold;
+}
+
+.game-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(68px, 95px));
+  gap: 10px;
+  padding: 12px;
+  background: #111927;
+  border: 1px solid #243044;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.card {
+  width: min(20vw, 95px);
+  height: min(20vw, 95px);
+  min-width: 68px;
+  min-height: 68px;
+  border-radius: 10px;
+  border: 1px solid #2c3b54;
+  background: linear-gradient(145deg, #1d2940, #162034);
+  color: #f3f7ff;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  cursor: pointer;
+  transition: transform 0.14s ease, border-color 0.14s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card.revealed,
+.card.matched {
+  background: linear-gradient(145deg, #f7a654, #e6832c);
+  color: #1a130a;
+  border-color: #ffd39f;
+}
+
+.card.matched {
+  opacity: 0.92;
+  cursor: default;
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 18, 0.86);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 14px;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+button {
+  margin: 4px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #55d5a8;
+  color: #0a1713;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.hidden {
+  display: none !important;
+}
+
+.hint {
+  color: #a6b3c9;
+  margin-top: 10px;
+}
