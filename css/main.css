@@ -47,7 +47,8 @@ h2 {
     padding: 6px 12px 6px;
 }
 
-.games a {
+.game-card {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,8 +67,34 @@ h2 {
     letter-spacing: 0.4px;
 }
 
-.games a:hover {
+.game-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent-2);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.game-card.is-locked {
+    pointer-events: none;
+    border-color: #3a3030;
+    color: #ddd4c2;
+    opacity: 0.58;
+    filter: grayscale(0.55);
+}
+
+.game-card.is-locked:hover {
+    transform: none;
+}
+
+.game-card__overlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    background: rgba(10, 10, 14, 0.85);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #ffe8b8;
+    border: 1px solid rgba(255, 232, 184, 0.35);
 }
