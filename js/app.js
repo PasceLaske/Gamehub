@@ -6,7 +6,7 @@ const games = [
     { title: "Connect 4", path: "games/connect4/index.html", playable: false},
     { title: "Tic Tac Toe", path: "games/tictactoe/index.html", playable: false },
     { title: "Reaction Rush", path: "games/reaction/index.html", playable: false },
-    { title: "Memory Match", path: "games/memory/index.html", playable: false }
+    { title: "Memory Match", path: "games/memory/index.html", playable: true }
 ];
 
 function renderGames() {
