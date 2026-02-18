@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asteroid Miner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Asteroid Miner</h1>
+
+<div class="hud">
+  <span id="ore">Ore: 0</span>
+  <span id="hull">Hull: 3</span>
+  <span id="highscore">Best Ore: 0</span>
+</div>
+
+<div class="game-wrapper">
+  <canvas id="game" width="600" height="360"></canvas>
+
+  <div id="overlay">
+    <h2 id="overlayTitle">Mine asteroids and survive</h2>
+    <button id="startBtn">Start</button>
+    <button id="resumeBtn" class="hidden">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="backBtn">Main Menu</button>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="touch-btn" data-action="left">Left</button>
+  <button class="touch-btn" data-action="fire">Fire</button>
+  <button class="touch-btn" data-action="right">Right</button>
+  <button class="touch-btn" data-action="pause">Pause</button>
+</div>
+
+<p class="hint">Move with A/D or Arrow keys, Space = Fire, Esc = Menu</p>
+
+<script src="../../js/storage.js"></script>
+<script src="../../js/stats.js"></script>
+<script src="asteroid-miner.js"></script>
+
+</body>
+</html>

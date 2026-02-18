@@ -7,7 +7,17 @@ const games = [
     { title: "Connect 4", path: "games/connect4/index.html", playable: false},
     { title: "Tic Tac Toe", path: "games/tictactoe/index.html", playable: true },
     { title: "Reaction Rush", path: "games/reaction/index.html", playable: false },
-    { title: "Memory Match", path: "games/memory/index.html", playable: true }
+    { title: "Memory Match", path: "games/memory/index.html", playable: true },
+    { title: "Asteroid Miner", path: "games/asteroid-miner/index.html", playable: false },
+    { title: "Castle Defender", path: "games/castle-defender/index.html", playable: false },
+    { title: "Neon Racer", path: "games/neon-racer/index.html", playable: false },
+    { title: "Dungeon Escape", path: "games/dungeon-escape/index.html", playable: false },
+    { title: "Pixel Farm", path: "games/pixel-farm/index.html", playable: false },
+    { title: "Space Trader", path: "games/space-trader/index.html", playable: false },
+    { title: "Island Builder", path: "games/island-builder/index.html", playable: false },
+    { title: "Sky Arena", path: "games/sky-arena/index.html", playable: false },
+    { title: "Robot Arena", path: "games/robot-arena/index.html", playable: false },
+    { title: "Frost Quest", path: "games/frost-quest/index.html", playable: false }
 ];
 
 function renderGames() {
