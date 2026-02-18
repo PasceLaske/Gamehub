@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tetris</title>
+  <title>Pong</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Tetris</h1>
+<h1>Pong</h1>
 
 <div class="hud">
-  <span id="score">Score: 0</span>
+  <span id="score">Score: 0 - 0</span>
   <span id="highscore">High Score: 0</span>
 </div>
 
+<div class="difficulty">
+  <span>Difficulty:</span>
+  <button data-diff="easy">Easy</button>
+  <button data-diff="normal" class="active">Normal</button>
+  <button data-diff="hard">Hard</button>
+</div>
+
 <div class="game-wrapper">
-  <canvas id="game" width="240" height="480"></canvas>
+  <canvas id="game" width="600" height="360"></canvas>
 
   <div id="overlay" class="hidden">
     <h2 id="overlayTitle">Game Over</h2>
@@ -26,11 +33,11 @@
   </div>
 </div>
 
-<p class="hint">Arrow keys move/rotate, P = Pause, Esc = Menu</p>
+<p class="hint">W/S or Arrow keys move the paddle, P = Pause, Esc = Menu</p>
 
 <script src="../../js/storage.js"></script>
 <script src="../../js/stats.js"></script>
-<script src="tetris.js"></script>
+<script src="pong.js"></script>
 
 </body>
 </html>

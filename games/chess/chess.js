@@ -158,7 +158,7 @@ function rayMoves(row, col, color, directions) {
   return moves;
 }
 
-function getMoves(row, col) {
+function getPseudoMoves(row, col) {
   const piece = board[row][col];
   if (!piece) return [];
   const moves = [];
@@ -259,6 +259,57 @@ function getMoves(row, col) {
   return moves;
 }
 
+function getAttackMoves(row, col) {
+  const piece = board[row][col];
+  if (!piece) return [];
+  const color = piece.color;
+
+  if (piece.type === PIECES.p) {
+    const dir = color === "white" ? -1 : 1;
+    return [-1, 1]
+      .map(dc => ({ row: row + dir, col: col + dc }))
+      .filter(move => inBounds(move.row, move.col));
+  }
+
+  return getPseudoMoves(row, col);
+}
+
+function findKing(color) {
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const piece = board[row][col];
+      if (piece && piece.color === color && piece.type === PIECES.k) {
+        return { row, col };
+      }
+    }
+  }
+  return null;
+}
+
+function isKingInCheck(color) {
+  const kingPos = findKing(color);
+  if (!kingPos) return false;
+  const opponent = color === "white" ? "black" : "white";
+  return isSquareThreatened(kingPos.row, kingPos.col, opponent);
+}
+
+function isMoveLegal(fromRow, fromCol, toRow, toCol, color) {
+  const moving = board[fromRow][fromCol];
+  const captured = board[toRow][toCol];
+  board[toRow][toCol] = moving;
+  board[fromRow][fromCol] = null;
+  const legal = !isKingInCheck(color);
+  board[fromRow][fromCol] = moving;
+  board[toRow][toCol] = captured;
+  return legal;
+}
+
+function getMoves(row, col) {
+  const piece = board[row][col];
+  if (!piece) return [];
+  return getPseudoMoves(row, col);
+}
+
 function clearSelection() {
   selected = null;
   possibleMoves = [];
@@ -345,7 +396,7 @@ function isSquareThreatened(row, col, byColor) {
     for (let c = 0; c < 8; c++) {
       const piece = board[r][c];
       if (!piece || piece.color !== byColor) continue;
-      const moves = getMoves(r, c);
+      const moves = getAttackMoves(r, c);
       if (moves.some(m => m.row === row && m.col === col)) return true;
     }
   }
@@ -359,15 +410,16 @@ function botMove() {
     showMenu("Draw", false);
     return;
   }
+  const safeMoves = moves.filter(move => {
+    const target = board[move.to.row][move.to.col];
+    if (target && target.type === PIECES.k) return true;
+    return isMoveLegal(move.from.row, move.from.col, move.to.row, move.to.col, botColor);
+  });
+  const candidateMoves = safeMoves.length ? safeMoves : moves;
+
   let bestScore = -Infinity;
   let bestMoves = [];
-  moves.forEach(move => {
-    const target = board[move.to.row][move.to.col];
-    if (target && target.type === PIECES.k) {
-      bestMoves = [move];
-      bestScore = Infinity;
-      return;
-    }
+  candidateMoves.forEach(move => {
     const score = evaluateMove(move.from.row, move.from.col, move.to.row, move.to.col);
     if (score > bestScore) {
       bestScore = score;
