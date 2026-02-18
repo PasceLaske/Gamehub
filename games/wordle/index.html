@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Wordle</h1>
+
+<div class="hud">
+    <span id="wins">Wins: 0</span>
+    <span id="losses">Losses: 0</span>
+</div>
+
+<div id="grid" class="grid" aria-label="Word grid"></div>
+<p id="message" class="message">Type a 5-letter word and press Enter.</p>
+
+<div id="keyboard" class="keyboard" aria-label="On-screen keyboard"></div>
+
+<div class="actions">
+    <button id="newGameBtn">New Word</button>
+    <button id="backBtn">Main Menu</button>
+</div>
+
+<script src="../../js/storage.js"></script>
+<script src="wordle.js"></script>
+</body>
+</html>

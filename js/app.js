@@ -3,6 +3,7 @@ const games = [
     { title: "Tetris", path: "games/tetris/index.html", playable: true },
     { title: "Pong", path: "games/pong/index.html", playable: true },
     { title: "Chess", path: "games/chess/index.html", playable: true },
+    { title: "Wordle", path: "games/wordle/index.html", playable: false },
     { title: "Connect 4", path: "games/connect4/index.html", playable: false},
     { title: "Tic Tac Toe", path: "games/tictactoe/index.html", playable: false },
     { title: "Reaction Rush", path: "games/reaction/index.html", playable: false },

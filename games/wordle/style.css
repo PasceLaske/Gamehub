@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    text-align: center;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #f3f1ec;
+    background:
+        radial-gradient(900px 500px at 15% -5%, rgba(230, 170, 52, 0.2), transparent 60%),
+        radial-gradient(900px 500px at 85% 5%, rgba(60, 174, 142, 0.18), transparent 55%),
+        linear-gradient(140deg, #12151d, #1a222f);
+    padding: 24px 12px 30px;
+}
+
+h1 {
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hud {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 56px);
+    gap: 8px;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.cell {
+    width: 56px;
+    height: 56px;
+    border: 2px solid #46516b;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #1a202e;
+}
+
+.cell.correct {
+    background: #2f9e44;
+    border-color: #2f9e44;
+}
+
+.cell.present {
+    background: #d79a2b;
+    border-color: #d79a2b;
+}
+
+.cell.absent {
+    background: #4e596f;
+    border-color: #4e596f;
+}
+
+.message {
+    min-height: 1.2em;
+    margin: 10px 0 14px;
+    opacity: 0.9;
+}
+
+.keyboard {
+    display: grid;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.key {
+    border: none;
+    border-radius: 8px;
+    min-width: 38px;
+    padding: 10px 8px;
+    font-weight: bold;
+    background: #2b3448;
+    color: #f3f1ec;
+    cursor: pointer;
+}
+
+.key.wide {
+    min-width: 72px;
+}
+
+.key.correct {
+    background: #2f9e44;
+}
+
+.key.present {
+    background: #d79a2b;
+}
+
+.key.absent {
+    background: #59667e;
+}
+
+.actions button {
+    margin: 4px;
+    border: none;
+    border-radius: 9px;
+    padding: 9px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #e6aa34;
+    color: #11131a;
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(5, 48px);
+        gap: 6px;
+    }
+
+    .cell {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    .key {
+        min-width: 30px;
+        padding: 9px 6px;
+        font-size: 0.75rem;
+    }
+}
