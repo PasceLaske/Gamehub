@@ -6,6 +6,9 @@ const SIZE = canvas.width / GRID;
 
 let snake, dir, food, score, speed, loop;
 let paused = false;
+let touchStartX = 0;
+let touchStartY = 0;
+const SWIPE_MIN_DISTANCE = 24;
 
 const overlay = document.getElementById("overlay");
 const overlayTitle = document.getElementById("overlayTitle");
@@ -41,6 +44,15 @@ function handleAction(action) {
         right: { x: 1, y: 0 }
     };
     setDirection(map[action]);
+}
+
+function handleSwipe(dx, dy) {
+    if (Math.abs(dx) < SWIPE_MIN_DISTANCE && Math.abs(dy) < SWIPE_MIN_DISTANCE) return;
+    if (Math.abs(dx) > Math.abs(dy)) {
+        handleAction(dx > 0 ? "right" : "left");
+        return;
+    }
+    handleAction(dy > 0 ? "down" : "up");
 }
 
 function showMenu(title = "Menu", canResume = true) {
@@ -98,6 +110,21 @@ document.addEventListener("keydown", e => {
 document.querySelectorAll(".touch-btn").forEach(btn => {
     btn.addEventListener("click", () => handleAction(btn.dataset.action));
 });
+
+canvas.addEventListener("touchstart", (e) => {
+    if (!e.touches.length) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("touchend", (e) => {
+    if (!e.changedTouches.length) return;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    handleSwipe(endX - touchStartX, endY - touchStartY);
+    e.preventDefault();
+}, { passive: false });
 
 function tick() {
     if (paused) return;

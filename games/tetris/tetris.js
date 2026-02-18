@@ -31,6 +31,10 @@ let score = 0;
 let dropInterval = 600;
 let dropTimer;
 let paused = false;
+let touchStartX = 0;
+let touchStartY = 0;
+const SWIPE_MIN_DISTANCE = 24;
+let suppressClickUntil = 0;
 
 document.getElementById("restartBtn").onclick = restart;
 document.getElementById("backBtn").onclick = () =>
@@ -188,6 +192,24 @@ function rotateActive() {
   draw();
 }
 
+function handleSwipe(dx, dy) {
+  if (Math.abs(dx) < SWIPE_MIN_DISTANCE && Math.abs(dy) < SWIPE_MIN_DISTANCE) return;
+  if (!overlay.classList.contains("hidden") || !active) return;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    if (dx > 0) move(1, 0);
+    if (dx < 0) move(-1, 0);
+    draw();
+    return;
+  }
+
+  if (dy < 0) rotateActive();
+  if (dy > 0) {
+    if (dy > 90) hardDrop();
+    else softDrop();
+  }
+}
+
 function gameOver() {
   clearInterval(dropTimer);
   if (score > highscore) {
@@ -247,6 +269,36 @@ document.querySelectorAll(".touch-btn").forEach(btn => {
     if (action === "rotate") rotateActive();
     draw();
   });
+});
+
+canvas.addEventListener("touchstart", (e) => {
+  if (!e.touches.length) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("touchend", (e) => {
+  if (!e.changedTouches.length) return;
+  const endX = e.changedTouches[0].clientX;
+  const endY = e.changedTouches[0].clientY;
+  const dx = endX - touchStartX;
+  const dy = endY - touchStartY;
+  if (Math.abs(dx) < SWIPE_MIN_DISTANCE && Math.abs(dy) < SWIPE_MIN_DISTANCE) {
+    if (overlay.classList.contains("hidden") && active) {
+      rotateActive();
+    }
+  } else {
+    handleSwipe(dx, dy);
+  }
+  suppressClickUntil = Date.now() + 300;
+  e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("click", () => {
+  if (Date.now() < suppressClickUntil) return;
+  if (!overlay.classList.contains("hidden") || !active) return;
+  rotateActive();
 });
 
 resetGrid();
