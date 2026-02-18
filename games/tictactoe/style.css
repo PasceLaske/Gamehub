@@ -25,9 +25,10 @@ body {
 }
 
 .board {
+  --cell-size: clamp(84px, 27vw, 110px);
   display: grid;
-  grid-template-columns: repeat(3, 110px);
-  grid-template-rows: repeat(3, 110px);
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
   gap: 8px;
   background: #0f1420;
   padding: 12px;
@@ -37,9 +38,9 @@ body {
 }
 
 .cell {
-  width: 110px;
-  height: 110px;
-  font-size: 48px;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  font-size: clamp(36px, 11vw, 48px);
   font-weight: bold;
   color: #f5f7ff;
   background: #121a26;

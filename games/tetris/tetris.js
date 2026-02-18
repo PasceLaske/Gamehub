@@ -106,10 +106,9 @@ function clearLines() {
 }
 
 function rotate(matrix) {
-  const rotated = matrix[0].map((_, i) =>
+  return matrix[0].map((_, i) =>
     matrix.map(row => row[i]).reverse()
   );
-  return rotated;
 }
 
 function move(dx, dy) {
@@ -165,6 +164,30 @@ function restartDropTimer() {
   dropTimer = setInterval(tick, dropInterval);
 }
 
+function softDrop() {
+  if (!active) return;
+  if (!move(0, 1)) lockPiece();
+  draw();
+}
+
+function hardDrop() {
+  if (!active) return;
+  while (move(0, 1)) {
+    // drop until collision
+  }
+  lockPiece();
+  draw();
+}
+
+function rotateActive() {
+  if (!active) return;
+  const rotated = rotate(active.matrix);
+  if (!collides(rotated, active.x, active.y)) {
+    active.matrix = rotated;
+  }
+  draw();
+}
+
 function gameOver() {
   clearInterval(dropTimer);
   if (score > highscore) {
@@ -203,15 +226,27 @@ document.addEventListener("keydown", e => {
   if (!active) return;
   if (e.key === "ArrowLeft") move(-1, 0);
   if (e.key === "ArrowRight") move(1, 0);
-  if (e.key === "ArrowDown") move(0, 1);
+  if (e.key === "ArrowDown") softDrop();
   if (e.key.toLowerCase() === "p") paused = !paused;
-  if (e.key === "ArrowUp") {
-    const rotated = rotate(active.matrix);
-    if (!collides(rotated, active.x, active.y)) {
-      active.matrix = rotated;
-    }
-  }
+  if (e.key === "ArrowUp") rotateActive();
   draw();
+});
+
+document.querySelectorAll(".touch-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const action = btn.dataset.action;
+    if (action === "pause") {
+      paused = !paused;
+      return;
+    }
+    if (!overlay.classList.contains("hidden") || !active) return;
+    if (action === "left") move(-1, 0);
+    if (action === "right") move(1, 0);
+    if (action === "down") softDrop();
+    if (action === "drop") hardDrop();
+    if (action === "rotate") rotateActive();
+    draw();
+  });
 });
 
 resetGrid();

@@ -23,6 +23,8 @@ body {
 }
 
 canvas {
+  width: min(92vw, 240px);
+  height: auto;
   background: #0f1420;
   border: 1px solid #1f2a3d;
   border-radius: 10px;
@@ -62,4 +64,28 @@ button {
 .hint {
   color: #a7b0c2;
   margin-top: 10px;
+}
+
+.touch-controls {
+  display: none;
+  margin: 12px auto 0;
+  width: min(92vw, 340px);
+}
+
+.touch-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.touch-btn {
+  min-width: 78px;
+  padding: 9px 10px;
+}
+
+@media (max-width: 820px) {
+  .touch-controls {
+    display: block;
+  }
 }

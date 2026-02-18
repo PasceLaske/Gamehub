@@ -25,20 +25,22 @@ body {
 }
 
 .board {
+  --cell-size: clamp(38px, 11vw, 70px);
+  --cell-gap: clamp(4px, 1.8vw, 8px);
   display: grid;
-  grid-template-columns: repeat(7, 70px);
-  grid-template-rows: repeat(6, 70px);
-  gap: 8px;
+  grid-template-columns: repeat(7, var(--cell-size));
+  grid-template-rows: repeat(6, var(--cell-size));
+  gap: var(--cell-gap);
   background: #0f1420;
-  padding: 12px;
+  padding: clamp(8px, 3vw, 12px);
   border-radius: 12px;
   border: 1px solid #1f2a3d;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 .cell {
-  width: 70px;
-  height: 70px;
+  width: var(--cell-size);
+  height: var(--cell-size);
   border-radius: 50%;
   background: #121a26;
   border: 1px solid #1f2a3d;

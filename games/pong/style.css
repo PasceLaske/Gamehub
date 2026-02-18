@@ -45,10 +45,13 @@ body {
 }
 
 canvas {
+  width: min(92vw, 600px);
+  height: auto;
   background: #0f1420;
   border: 1px solid #1f2a3d;
   border-radius: 10px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  touch-action: none;
 }
 
 #overlay {
@@ -84,4 +87,10 @@ button {
 .hint {
   color: #a7b0c2;
   margin-top: 10px;
+}
+
+@media (max-width: 560px) {
+  .difficulty {
+    flex-wrap: wrap;
+  }
 }

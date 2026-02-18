@@ -238,6 +238,14 @@ function setDifficulty(key, shouldRestart = true) {
   if (shouldRestart) restart();
 }
 
+function setPlayerFromClientY(clientY) {
+  if (!overlay.classList.contains("hidden")) return;
+  const rect = canvas.getBoundingClientRect();
+  const relativeY = clientY - rect.top;
+  const logicalY = (relativeY / rect.height) * canvas.height;
+  player.y = Math.max(0, Math.min(canvas.height - PADDLE_H, logicalY - PADDLE_H / 2));
+}
+
 difficultyButtons.forEach(btn => {
   btn.addEventListener("click", () => setDifficulty(btn.dataset.diff));
 });
@@ -255,6 +263,27 @@ document.addEventListener("keydown", e => {
 document.addEventListener("keyup", e => {
   keys[e.code] = false;
 });
+
+canvas.addEventListener("pointerdown", e => {
+  setPlayerFromClientY(e.clientY);
+});
+
+canvas.addEventListener("pointermove", e => {
+  if (e.pointerType === "mouse" && (e.buttons & 1) === 0) return;
+  setPlayerFromClientY(e.clientY);
+});
+
+canvas.addEventListener("touchstart", e => {
+  if (!e.touches.length) return;
+  setPlayerFromClientY(e.touches[0].clientY);
+  e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("touchmove", e => {
+  if (!e.touches.length) return;
+  setPlayerFromClientY(e.touches[0].clientY);
+  e.preventDefault();
+}, { passive: false });
 
 updateScore();
 setDifficulty("normal", false);

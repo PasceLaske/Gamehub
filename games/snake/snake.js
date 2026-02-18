@@ -22,6 +22,27 @@ document.getElementById("backBtn").onclick = () =>
     location.href = "../../index.html";
 resumeBtn.onclick = resume;
 
+function setDirection(next) {
+    if (!next) return;
+    if (next.x === -dir.x && next.y === -dir.y) return;
+    dir = next;
+}
+
+function handleAction(action) {
+    if (action === "pause") {
+        paused = !paused;
+        return;
+    }
+    if (!overlay.classList.contains("hidden")) return;
+    const map = {
+        up: { x: 0, y: -1 },
+        down: { x: 0, y: 1 },
+        left: { x: -1, y: 0 },
+        right: { x: 1, y: 0 }
+    };
+    setDirection(map[action]);
+}
+
 function showMenu(title = "Menu", canResume = true) {
     paused = true;
     overlayTitle.textContent = title;
@@ -69,11 +90,13 @@ document.addEventListener("keydown", e => {
         ArrowRight: { x: 1, y: 0 }
     };
 
-    if (map[e.key] && (map[e.key].x !== -dir.x || map[e.key].y !== -dir.y)) {
-        dir = map[e.key];
-    }
+    if (map[e.key]) setDirection(map[e.key]);
 
     if (e.key === " ") paused = !paused;
+});
+
+document.querySelectorAll(".touch-btn").forEach(btn => {
+    btn.addEventListener("click", () => handleAction(btn.dataset.action));
 });
 
 function tick() {
